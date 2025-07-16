@@ -10,7 +10,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-model = joblib.load("model/salary_model.pkl")
+model_path = os.path.join(os.path.dirname(__file__), 'model', 'salary_model.pkl')
+model = joblib.load(model_path)
+
 @app.route("/")
 def serve_index():
     return send_from_directory(os.path.join(os.path.dirname(__file__), "../frontend"), "index.html")
